@@ -219,16 +219,16 @@ class SphinxSearch
                     } else if (isset($config['modelname'])) {
                         if ($this->_eager_loads) {
                             $result = call_user_func_array($config['modelname'] . "::whereIn",
-                                array($config['column'], $matchids))->orderByRaw(\DB::raw("FIELD($primaryKey, $idString)"))
+                                array($config['column'], $matchids))->orderByRaw("FIELD($primaryKey, $idString)")
                                 ->with($this->_eager_loads)->get();
                         } else {
                             $result = call_user_func_array($config['modelname'] . "::whereIn",
-                                array($config['column'], $matchids))->orderByRaw(\DB::raw("FIELD($primaryKey, $idString)"))
+                                array($config['column'], $matchids))->orderByRaw("FIELD($primaryKey, $idString)")
                                 ->get();
                         }
                     } else {
                         $result = \DB::table($config['table'])->whereIn($config['column'], $matchids)
-                            ->orderByRaw(\DB::raw("FIELD($primaryKey, $idString)"))->get();
+                            ->orderByRaw("FIELD($primaryKey, $idString)")->get();
                     }
                 }
             } else {
